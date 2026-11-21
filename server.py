@@ -398,7 +398,7 @@ def host_for(h,s):
 
 
 def link_for(h,r,s):
-    proto=(r['protocol'] if 'protocol' in r.keys() else 'vless') or 'vless'; host=host_for(h,s); name=urllib.parse.quote(r['name']); port=int(s.get('node_port','443'))
+    proto=(r['protocol'] if 'protocol' in r.keys() else 'vless') or 'vless'; host=host_for(h,s); name=urllib.parse.quote('AbyssTunnel🇳🇱'); port=int(s.get('node_port','443'))
     if proto=='wireguard': return wg_config_for(h,r,s)
     if proto=='dns':
         token=r['dns_token'] or ''; return f'https://{host}/doh/{token}' if token else ''
@@ -406,7 +406,7 @@ def link_for(h,r,s):
     paths={'ws':s.get('ws_path','/ws'),'xhttp':s.get('xhttp_path','/xhttp'),'grpc':s.get('grpc_path','/grpc'),'httpupgrade':s.get('httpupgrade_path','/upgrade')}
     path=paths.get(transport,'/ws') or '/ws'; svc=s.get('grpc_service','vpnstan') or 'vpnstan'
     if proto=='vmess':
-        obj={'v':'2','ps':r['name'],'add':host,'port':str(port),'id':r['uuid'],'aid':'0','scy':'auto','net':transport,'type':'none','host':host,'path':path,'tls':'tls','sni':host}
+        obj={'v':'2','ps':'AbyssTunnel🇳🇱','add':host,'port':str(port),'id':r['uuid'],'aid':'0','scy':'auto','net':transport,'type':'none','host':host,'path':path,'tls':'tls','sni':host}
         if transport=='grpc': obj['path']=svc
         return 'vmess://'+base64.b64encode(json.dumps(obj,separators=(',',':'),ensure_ascii=False).encode()).decode()
     if proto=='trojan':
